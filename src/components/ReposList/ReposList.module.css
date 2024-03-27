@@ -1,0 +1,38 @@
+.container {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    list-style: none;
+    width: 100%;
+    max-width: 750px;
+}
+
+.list-item {
+    border: solid 1px #24292f;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+}
+
+.list-item__text-bold {
+    font-weight: bold;
+}
+
+.list-item__title {
+    text-align: center;
+    font-size: 18px;
+}
+
+.list-item__separator {
+    margin: 0.5rem 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.list-item__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
