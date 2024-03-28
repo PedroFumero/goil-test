@@ -9,7 +9,6 @@ export const StateContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(appReducer, {
         user: null,
         repos: [],
-        theme: 'light',
         lang: 'en',
     });
 

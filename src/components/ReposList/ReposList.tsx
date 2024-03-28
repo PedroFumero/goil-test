@@ -1,15 +1,11 @@
-import classes from './ReposList.module.css';
 import Button from '@/components/Button/Button';
-import Link from 'next/link';
+import useTranslate from '@/hooks/translate-hook';
+import useFormatDate from '@/hooks/format-date';
+import classes from './ReposList.module.css';
 
 const ReposList = ({ repos = [] }) => {
-    function formatDate(date) {
-        return new Date(date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-    }
+    const translate = useTranslate();
+    const formatDate = useFormatDate();
 
     return (
         <main className={classes.container}>
@@ -21,23 +17,27 @@ const ReposList = ({ repos = [] }) => {
                                 {repo.name}
                             </span>
                         </p>
-                        <div className={classes['list-item__separator']} />
                         {repo.description && (
-                            <p>
-                                <span
-                                    className={classes['list-item__text-bold']}
-                                >
-                                    Description:
-                                </span>{' '}
-                                {repo.description}
-                            </p>
+                            <>
+                                <div
+                                    className={classes['list-item__separator']}
+                                />
+                                <p>
+                                    <span className="text-bold">
+                                        {translate('description')}:
+                                    </span>{' '}
+                                    {repo.description}
+                                </p>
+                            </>
                         )}
                         <div className={classes['list-item__separator']} />
                         <div className={classes['list-item__footer']}>
                             {repo.created_at && (
                                 <p>{formatDate(repo.created_at)}</p>
                             )}
-                            <Button link={repo.html_url}>Visit repo</Button>
+                            <Button link={repo.html_url}>
+                                {translate('openRepo')}
+                            </Button>
                         </div>
                     </li>
                 ))}

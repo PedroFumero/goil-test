@@ -29,7 +29,6 @@ export function useHttpClient() {
                 return responseData;
             } catch (e) {
                 setError(e.message);
-                // throw e;
             } finally {
                 setIsLoading(false);
             }
@@ -37,9 +36,5 @@ export function useHttpClient() {
         []
     );
 
-    const clearError = () => {
-        setError(null);
-    };
-
-    return { isLoading, error, sendRequest, clearError };
+    return { isLoading, error, sendRequest };
 }

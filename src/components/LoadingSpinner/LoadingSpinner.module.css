@@ -8,3 +8,8 @@
     transform-origin: center;
     animation: spin 1s linear infinite;
 }
+
+.loading-spinner-size {
+    width: 100px;
+    height: 100px;
+}

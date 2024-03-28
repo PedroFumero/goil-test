@@ -29,6 +29,11 @@ html {
     margin-top: 5px;
 }
 
+.mt-2rem {
+    margin-top: 2rem;
+}
+
+
 .mb-5 {
     margin-bottom: 5px;
 }
@@ -53,4 +58,52 @@ form::before {
     left: calc(50% - 55px);
     top: -110px;
 
+}
+
+.error {
+    padding: 0.5rem;
+    background-color: #ffc4c4;
+    color: darkred;
+    border: darkred solid 1px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.home-icon {
+    width: 40px;
+    height: 40px;
+}
+
+input::placeholder {
+    font-size: 17px;
+}
+
+.back-button {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #24292f;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }

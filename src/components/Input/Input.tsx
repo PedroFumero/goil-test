@@ -1,5 +1,3 @@
-import classes from './Input.module.css';
-
 const Input = ({ type, label, id, placeholder, ...props }) => {
     return (
         <>

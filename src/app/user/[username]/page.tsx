@@ -7,10 +7,13 @@ import { ActionType } from '@/context/reducer';
 import { useHttpClient } from '@/hooks/http-hook';
 import UserCard from '@/components/UserCard/UserCard';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+import useTranslate from '@/hooks/translate-hook';
 
 const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
+    const { isLoading, error, sendRequest } = useHttpClient();
+    const [initialLoadComplete, setInitialLoadComplete] = useState(false);
     const appCtx = useContext(StateContext);
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const translate = useTranslate();
 
     useEffect(() => {
         async function fetchDetails() {
@@ -29,25 +32,27 @@ const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
         fetchDetails();
     }, []);
 
+    useEffect(() => {
+        if (!isLoading) {
+            setInitialLoadComplete(true);
+        }
+    }, [isLoading]);
+
     if (isLoading) {
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <LoadingSpinner />
-            </div>
-        );
+        return <LoadingSpinner />;
     }
 
     if (error) {
-        return <h3>User Not Found</h3>;
+        return (
+            <h3 className="center error">
+                {error === 'Not Found' ? translate('notFound') : error}
+            </h3>
+        );
     }
 
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {!isLoading && appCtx.state.user && (
-                <UserCard user={appCtx.state.user} username={params.username} />
-            )}
-        </div>
-    );
+    if (appCtx.state.user && initialLoadComplete) {
+        return <UserCard user={appCtx.state.user} username={params.username} />;
+    }
 };
 
 export default DetailsPage;
