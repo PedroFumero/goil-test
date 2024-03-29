@@ -10,4 +10,6 @@ export default {
     notFound: 'No Encontrado',
     inValidInput: 'Debes ingresar un nombre de usuario',
     back: 'Volver',
+    language: 'Idioma',
+    somethingWentWrong: 'Algo salió mal',
 };

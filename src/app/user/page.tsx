@@ -9,14 +9,12 @@ export default function UserPage(): JSX.Element {
     const appCtx = useContext(StateContext);
 
     useEffect(() => {
-        // If no user data available, redirect to root page
-        if (!appCtx.state.user) {
+        if (!appCtx.user) {
             router.push('/');
         } else {
-            // Redirect to user profile page if user data exists
-            router.push(`/user/${appCtx.state.user.login}`);
+            router.push(`/user/${appCtx.user.login}`);
         }
-    }, [appCtx.state.user, router]);
+    }, [appCtx.user, router]);
 
-    return <></>; // No content to render on this page
+    return <></>;
 }

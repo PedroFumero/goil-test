@@ -3,9 +3,9 @@ import { StateContext } from '@/context/StateContext';
 
 const useFormatDate = () => {
     const appCtx = useContext(StateContext);
-    const lang = appCtx.state.lang;
+    const lang = appCtx.lang;
 
-    return (date) => {
+    return (date: string) => {
         return new Date(date).toLocaleDateString(lang, {
             year: 'numeric',
             month: 'long',

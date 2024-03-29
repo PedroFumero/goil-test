@@ -1,13 +1,13 @@
 'use client';
 
 import { FC, useContext, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { StateContext } from '@/context/StateContext';
 import { ActionType } from '@/context/reducer';
 import { useHttpClient } from '@/hooks/http-hook';
 import UserCard from '@/components/UserCard/UserCard';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 import useTranslate from '@/hooks/translate-hook';
+import { GitHubUser } from '@/definitions/interfaces';
 
 const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
     const { isLoading, error, sendRequest } = useHttpClient();
@@ -17,9 +17,9 @@ const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
 
     useEffect(() => {
         async function fetchDetails() {
-            if (appCtx.state.user) return;
+            if (appCtx.user) return;
 
-            const responseData = await sendRequest(
+            const responseData: GitHubUser = await sendRequest(
                 `https://api.github.com/users/${params.username}`
             );
 
@@ -50,8 +50,8 @@ const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
         );
     }
 
-    if (appCtx.state.user && initialLoadComplete) {
-        return <UserCard user={appCtx.state.user} username={params.username} />;
+    if (appCtx.user && initialLoadComplete) {
+        return <UserCard user={appCtx.user} username={params.username} />;
     }
 };
 

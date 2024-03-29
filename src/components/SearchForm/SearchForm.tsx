@@ -1,6 +1,6 @@
 import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import classes from './SearchForm.module.css';
@@ -24,7 +24,7 @@ const SearchForm = () => {
         router.push(`/user/${username}`);
     }
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setIsInvalid(!e.target.value.toString().trim().length);
         setUsername(e.target.value);
     }

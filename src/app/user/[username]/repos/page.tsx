@@ -7,18 +7,23 @@ import { useHttpClient } from '@/hooks/http-hook';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 import ReposList from '@/components/ReposList/ReposList';
 import useTranslate from '@/hooks/translate-hook';
+import { GitHubRepository } from '@/definitions/interfaces';
 
-const UserReposList: FC<{ [key: string]: any }> = ({ params }) => {
+const UserReposList: FC<{
+    params: {
+        username: string;
+    };
+}> = ({ params }) => {
     const { isLoading, error, sendRequest } = useHttpClient();
     const [initialLoadComplete, setInitialLoadComplete] = useState(false);
     const appCtx = useContext(StateContext);
     const translate = useTranslate();
 
     useEffect(() => {
-        if (appCtx.state.repos?.length) return;
+        if (appCtx.repos?.length) return;
 
         async function fetchDetails() {
-            const responseData = await sendRequest(
+            const responseData: GitHubRepository[] = await sendRequest(
                 `https://api.github.com/users/${params.username}/repos`
             );
 
@@ -45,11 +50,11 @@ const UserReposList: FC<{ [key: string]: any }> = ({ params }) => {
         return <h3 className="center error">{error}</h3>;
     }
 
-    if (!appCtx.state.repos?.length && initialLoadComplete) {
+    if (!appCtx.repos?.length && initialLoadComplete) {
         return <h3 className="center error">{translate('noRepos')}</h3>;
     }
 
-    return <ReposList repos={appCtx.state.repos} />;
+    return <ReposList repos={appCtx.repos} />;
 };
 
 export default UserReposList;

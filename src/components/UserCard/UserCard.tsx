@@ -3,13 +3,18 @@
 import classes from './UserCard.module.css';
 import Link from 'next/link';
 import useTranslate from '@/hooks/translate-hook';
+import { FC } from 'react';
+import { GitHubUser } from '@/definitions/interfaces';
 
-const UserCard = ({ user, username }) => {
+const UserCard: FC<{ user: GitHubUser; username: string }> = ({
+    user,
+    username,
+}) => {
     const translate = useTranslate();
 
     return (
         <div className="flex-center">
-            <Link className={classes.card} href={`/user/${username}/repos`}>
+            <Link href={`/user/${username}/repos`} className={classes.card}>
                 <div className={classes.avatar}>
                     <img
                         src={user?.avatar_url}

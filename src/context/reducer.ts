@@ -1,28 +1,24 @@
-// Define types
-interface AppState {
-    user: any;
-    repos: any;
-    lang: string;
-}
+import { ContextType } from '@/definitions/types';
+import { GitHubRepository, GitHubUser } from '@/definitions/interfaces';
+import { Language } from '@/definitions/enums';
 
 interface UpdateUserAction {
     type: ActionType.UPDATE_USER;
-    payload: any;
+    payload: GitHubUser | null;
 }
 
 interface UpdateReposAction {
     type: ActionType.UPDATE_REPOS;
-    payload: any;
+    payload: GitHubRepository[] | [];
 }
 
 interface UpdateLangAction {
     type: ActionType.UPDATE_LANG;
-    payload: string;
+    payload: Language;
 }
 
 type Action = UpdateUserAction | UpdateReposAction | UpdateLangAction;
 
-// Enum
 export enum ActionType {
     UPDATE_USER,
     UPDATE_REPOS,
@@ -30,7 +26,7 @@ export enum ActionType {
 }
 
 // Reducer
-export function appReducer(state: AppState, action: Action): AppState {
+export function appReducer(state: ContextType, action: Action): ContextType {
     switch (action.type) {
         case ActionType.UPDATE_USER:
             return { ...state, user: action.payload };

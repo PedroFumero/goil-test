@@ -1,8 +1,7 @@
-import Link from 'next/link';
-
 import classes from './NavigationBar.module.css';
+import { FC, ReactNode } from 'react';
 
-const NavigationBar = ({ children }) => {
+const NavigationBar: FC<{ children: ReactNode }> = ({ children }) => {
     return (
         <nav className={classes.nav}>
             <ul>{children}</ul>

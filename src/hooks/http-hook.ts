@@ -1,12 +1,14 @@
 import { useCallback, useState } from 'react';
+import useTranslate from '@/hooks/translate-hook';
 
 export function useHttpClient() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const translate = useTranslate();
 
     const sendRequest = useCallback(
         async (
-            url,
+            url: string,
             method = 'GET',
             body = null,
             headers = {
@@ -27,8 +29,9 @@ export function useHttpClient() {
                 }
 
                 return responseData;
-            } catch (e) {
-                setError(e.message);
+            } catch (e: unknown) {
+                // @ts-ignore
+                setError(e.message || translate('somethingWentWrong'));
             } finally {
                 setIsLoading(false);
             }

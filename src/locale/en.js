@@ -10,4 +10,6 @@ export default {
     notFound: 'Not Found',
     inValidInput: 'You need to enter a username',
     back: 'Back',
+    language: 'Language',
+    somethingWentWrong: 'Something went wrong',
 };

@@ -1,7 +1,12 @@
 import './Button.css';
-import Link from 'next/link';
+import { FC, ReactNode } from 'react';
 
-const Button = ({ children, type = 'button', link, ...props }) => {
+const Button: FC<{
+    children: ReactNode;
+    type?: 'button' | 'submit' | 'reset';
+    link?: string;
+    className?: string;
+}> = ({ children, type = 'button', link, ...props }) => {
     return link ? (
         <a href={link}>
             <button type={type} {...props}>

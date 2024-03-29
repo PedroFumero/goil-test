@@ -2,8 +2,10 @@ import Button from '@/components/Button/Button';
 import useTranslate from '@/hooks/translate-hook';
 import useFormatDate from '@/hooks/format-date';
 import classes from './ReposList.module.css';
+import { FC } from 'react';
+import { GitHubRepository } from '@/definitions/interfaces';
 
-const ReposList = ({ repos = [] }) => {
+const ReposList: FC<{ repos: GitHubRepository[] | [] }> = ({ repos = [] }) => {
     const translate = useTranslate();
     const formatDate = useFormatDate();
 
