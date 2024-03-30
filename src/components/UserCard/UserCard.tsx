@@ -40,7 +40,11 @@ const UserCard: FC<{ user: GitHubUser; username: string }> = ({
             </Modal>
 
             <div className="flex-center">
-                <div className={classes.card} onClick={handleCardClick}>
+                <div
+                    id="user-card"
+                    className={classes.card}
+                    onClick={handleCardClick}
+                >
                     <div className={classes.avatar}>
                         <img
                             src={user?.avatar_url}
@@ -53,7 +57,7 @@ const UserCard: FC<{ user: GitHubUser; username: string }> = ({
                             <span className="text-bold">
                                 {translate('name')}:
                             </span>{' '}
-                            {user?.name}
+                            {user?.name || 'N/A'}
                         </p>
                         <p>
                             <span className="text-bold">
@@ -65,7 +69,7 @@ const UserCard: FC<{ user: GitHubUser; username: string }> = ({
                             <span className="text-bold">
                                 {translate('bio')}:
                             </span>{' '}
-                            {user?.bio}
+                            {user?.bio || 'N/A'}
                         </p>
                     </div>
                 </div>

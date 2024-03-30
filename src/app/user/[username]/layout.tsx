@@ -19,7 +19,11 @@ export default function UserLayout({
     return (
         <>
             <div className="center mb-5">
-                <Button className="center back-button" onClick={handleBack}>
+                <Button
+                    id="back"
+                    className="center back-button"
+                    onClick={handleBack}
+                >
                     {translate('back')}
                 </Button>
             </div>

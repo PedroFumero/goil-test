@@ -23,6 +23,7 @@ const LangPicker = () => {
     return (
         <div className={classes['lang-icon']} onClick={handleClick}>
             <img
+                id="lang-picker"
                 src={`/${lang === Language.English ? Language.Spanish : Language.English}-lang.svg`}
                 alt={translate('language')}
             />

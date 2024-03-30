@@ -23,6 +23,7 @@ export default function RootLayout({
                         <li>
                             <Link href="/">
                                 <img
+                                    id="home-icon"
                                     className="home-icon"
                                     src="/home.svg"
                                     alt="Home Icon"

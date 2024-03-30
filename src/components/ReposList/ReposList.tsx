@@ -15,9 +15,7 @@ const ReposList: FC<{ repos: GitHubRepository[] | [] }> = ({ repos = [] }) => {
                 {repos.map((repo) => (
                     <li key={repo.id} className={classes['list-item']}>
                         <p className={classes['list-item__title']}>
-                            <span className={classes['list-item__text-bold']}>
-                                {repo.name}
-                            </span>
+                            <span className="text-bold">{repo.name}</span>
                         </p>
                         {repo.description && (
                             <>
@@ -25,7 +23,7 @@ const ReposList: FC<{ repos: GitHubRepository[] | [] }> = ({ repos = [] }) => {
                                     className={classes['list-item__separator']}
                                 />
                                 <p>
-                                    <span className="text-bold">
+                                    <span className="text-bold repo-description">
                                         {translate('description')}:
                                     </span>{' '}
                                     {repo.description}
@@ -37,7 +35,7 @@ const ReposList: FC<{ repos: GitHubRepository[] | [] }> = ({ repos = [] }) => {
                             {repo.created_at && (
                                 <p>{formatDate(repo.created_at)}</p>
                             )}
-                            <Button link={repo.html_url}>
+                            <Button className="open" link={repo.html_url}>
                                 {translate('openRepo')}
                             </Button>
                         </div>
