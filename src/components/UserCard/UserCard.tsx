@@ -1,46 +1,76 @@
 'use client';
 
 import classes from './UserCard.module.css';
-import Link from 'next/link';
 import useTranslate from '@/hooks/translate-hook';
-import { FC } from 'react';
+import { FC, useState, MouseEvent } from 'react';
 import { GitHubUser } from '@/definitions/interfaces';
+import { useRouter } from 'next/navigation';
+import Modal from '@/components/Modal/Modal';
 
 const UserCard: FC<{ user: GitHubUser; username: string }> = ({
     user,
     username,
 }) => {
     const translate = useTranslate();
+    const router = useRouter();
+    const [showModal, setShowModal] = useState(false);
+
+    function handleAvatarClick(e: MouseEvent) {
+        e.stopPropagation();
+        setShowModal(true);
+    }
+    function handleCardClick(e: MouseEvent) {
+        router.push(`/user/${username}/repos`);
+    }
+
+    function handleCloseModal() {
+        setShowModal(false);
+    }
 
     return (
-        <div className="flex-center">
-            <Link href={`/user/${username}/repos`} className={classes.card}>
-                <div className={classes.avatar}>
+        <>
+            <Modal showModal={showModal} onClose={handleCloseModal}>
+                <div className={`${classes.avatar} ${classes['modal-avatar']}`}>
                     <img
                         src={user?.avatar_url}
                         alt={user?.name}
-                        height={120}
-                        width={120}
+                        onClick={handleAvatarClick}
                     />
                 </div>
-                <div className={classes.details}>
-                    <p>
-                        <span className="text-bold">{translate('name')}:</span>{' '}
-                        {user?.name}
-                    </p>
-                    <p>
-                        <span className="text-bold">
-                            {translate('username')}:
-                        </span>{' '}
-                        {user?.login}
-                    </p>
-                    <p>
-                        <span className="text-bold">{translate('bio')}:</span>{' '}
-                        {user?.bio}
-                    </p>
+            </Modal>
+
+            <div className="flex-center">
+                <div className={classes.card} onClick={handleCardClick}>
+                    <div className={classes.avatar}>
+                        <img
+                            src={user?.avatar_url}
+                            alt={user?.name}
+                            onClick={handleAvatarClick}
+                        />
+                    </div>
+                    <div className={classes.details}>
+                        <p>
+                            <span className="text-bold">
+                                {translate('name')}:
+                            </span>{' '}
+                            {user?.name}
+                        </p>
+                        <p>
+                            <span className="text-bold">
+                                {translate('username')}:
+                            </span>{' '}
+                            {user?.login}
+                        </p>
+                        <p>
+                            <span className="text-bold">
+                                {translate('bio')}:
+                            </span>{' '}
+                            {user?.bio}
+                        </p>
+                    </div>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </>
     );
 };
 

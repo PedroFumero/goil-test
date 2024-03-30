@@ -3,6 +3,8 @@ button {
     border: #24292f 1px solid;
     padding: 0.5rem;
     color: white;
+    border-radius: 0;
+    outline: none;
 }
 
 button:hover {

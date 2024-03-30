@@ -6,6 +6,7 @@ const Button: FC<{
     type?: 'button' | 'submit' | 'reset';
     link?: string;
     className?: string;
+    onClick?: () => void;
 }> = ({ children, type = 'button', link, ...props }) => {
     return link ? (
         <a href={link}>

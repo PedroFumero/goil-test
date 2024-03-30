@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import useTranslate from '@/hooks/translate-hook';
+import Button from '@/components/Button/Button';
 
 export default function UserLayout({
     children,
@@ -18,9 +19,9 @@ export default function UserLayout({
     return (
         <>
             <div className="center mb-5">
-                <span className="center back-button" onClick={handleBack}>
+                <Button className="center back-button" onClick={handleBack}>
                     {translate('back')}
-                </span>
+                </Button>
             </div>
             {children}
         </>
