@@ -13,9 +13,7 @@ describe('Main page of application', () => {
     });
 
     it('should render a spanish icon flag', () => {
-        cy.get('#lang-picker')
-            .should('have.prop', 'naturalWidth')
-            .and('be.greaterThan', 0);
+        cy.get('#Spain').should('exist');
     });
 
     it('should render an input search', () => {
@@ -34,12 +32,14 @@ describe('Main page of application', () => {
         cy.get('button[type="submit"]').should('have.text', en.search);
     });
 
+    it('should render an alert message if try to send form without a username', () => {
+        cy.get('button[type="submit"]').click();
+        cy.get('.error').should('exist');
+    });
+
     it(`should display USA icon flag after click Spain icon flag`, () => {
         cy.get('#lang-picker').click();
-
-        cy.get('#lang-picker')
-            .should('have.attr', 'src')
-            .and('include', 'en-lang');
+        cy.get('#United_States').should('exist');
     });
 
     it(`should display "${es.inputPlaceHolder}" text in placeholder`, () => {
@@ -83,10 +83,7 @@ describe('Search user', () => {
 
     it(`should display USA icon flag after click Spain icon flag`, () => {
         cy.get('#lang-picker').click();
-
-        cy.get('#lang-picker')
-            .should('have.attr', 'src')
-            .and('include', 'en-lang');
+        cy.get('#United_States').should('exist');
     });
 
     it(`should render ${es.name}, ${es.username} and ${es.bio} properties from "hola" GitHub user`, () => {

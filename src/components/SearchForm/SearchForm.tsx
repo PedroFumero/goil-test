@@ -2,10 +2,8 @@ import Input from '@/components/Input/Input';
 import Button from '@/components/Button/Button';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
-import classes from './SearchForm.module.css';
-
 import useTranslate from '@/hooks/translate-hook';
+import classes from './SearchForm.module.css';
 
 const SearchForm = () => {
     const router = useRouter();
