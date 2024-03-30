@@ -9,7 +9,7 @@ import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 import useTranslate from '@/hooks/translate-hook';
 import { GitHubUser } from '@/definitions/interfaces';
 
-const DetailsPage: FC<{ [params: string]: any }> = ({ params }) => {
+const DetailsPage: FC<{ params: { username: string } }> = ({ params }) => {
     const { isLoading, error, sendRequest } = useHttpClient();
     const [initialLoadComplete, setInitialLoadComplete] = useState(false);
     const appCtx = useContext(StateContext);
