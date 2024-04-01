@@ -22,4 +22,5 @@ P.S.: You need to have the development server up and running to test the applica
 
 To visit the production version of the application go to [https://goil-test.vercel.app/](https://goil-test.vercel.app/) with your browser to see the result.
 
-
+### IMPORTANT
+You need to create a .env file in the root directory and include the property: **NEXT_PUBLIC_GITHUB_TOKEN** with the value (generated from your GitHub account)

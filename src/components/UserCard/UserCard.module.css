@@ -40,6 +40,16 @@ a.card {
     border-radius: 100%;
 }
 
+.change-avatar {
+    cursor: pointer;
+    border: solid 3px transparent;
+    padding: 1rem;
+}
+
+.change-avatar:hover {
+    border: solid 3px rgba(36, 41, 47, 0.20);
+}
+
 .modal-avatar {
     height: 280px;
     width: 280px;

@@ -12,7 +12,7 @@ export function useHttpClient() {
             method = 'GET',
             body = null,
             headers = {
-                Authorization: 'token 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',
+                Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
             }
         ) => {
             setIsLoading(true);
